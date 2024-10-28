@@ -1,6 +1,6 @@
 
 # Sobre o projeto : 
-Projeto referente a segunda etapa da Atividade de Estudo Programada (AEP), que tem como objetivo desenvolver um aplicativo web que permita aos usuários criptografar e descriptografar dados de forma segura.
+Projeto referente a segunda etapa da Atividade de Estudo Programada (AEP), que tem como objetivo desenvolver um aplicativo web que permita os usuários criptografar e descriptografar dados de forma segura.
 
 ## Tecnologias:
 
