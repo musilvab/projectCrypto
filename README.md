@@ -14,7 +14,7 @@ Projeto referente a segunda etapa da Atividade de Estudo Programada (AEP), que t
 
 ## Funcionalidades:
 
-**Criptografia:** O usuário poderá inserir um texto e escolher um algoritmo de criptografia (ex: AES, RSA) para gerar um texto cifrado.
+**Criptografia:** O usuário poderá inserir um texto e escolher um algoritmo de criptografia (ex: Jasypt) para gerar um texto cifrado.
 
 **Descriptografia:** O usuário poderá inserir o texto cifrado e a chave correspondente para obter o texto original.
 
