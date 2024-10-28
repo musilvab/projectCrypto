@@ -25,4 +25,5 @@ Projeto referente a segunda etapa da Atividade de Estudo Programada (AEP), que t
 ## Arquitetura:
 
 **Frontend:** Interface web desenvolvida em HTML, CSS e JavaScript, onde o usuário interage com o sistema.
+
 **Backend:** Desenvolvido em Java, com a arquiterua MVC.
