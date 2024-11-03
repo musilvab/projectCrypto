@@ -19,4 +19,9 @@ public class ViewController {
     public String home() {
         return "home";
     }
+
+    @GetMapping("/delete")
+    public String deletePage(){
+        return "delete";
+    }
 }

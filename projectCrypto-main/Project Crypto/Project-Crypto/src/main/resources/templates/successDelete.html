@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="base::head"></head>
+<body th:fragment="section">
+<h1>Status da Conta</h1>
+<div th:if="${successMessage != null}">
+    <p th:text="${successMessage}" style="color:green;"></p>
+</div>
+<div th:if="${errorMessage != null}">
+    <p th:text="${errorMessage}" style="color:red;"></p>
+</div>
+<a href="/login">Voltar</a> <!-- Altere para a página que você deseja -->
+</body>
+</html>

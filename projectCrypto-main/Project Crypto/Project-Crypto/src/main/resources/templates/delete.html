@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="base :: head"></head>
+<body th:fragment="section">
+<h2>Excluir</h2>
+<form action="/auth/delete" method="post">
+    <input type="text" name="username" id="username">
+    <input type="text" name="password" id="password">
+    <input type="submit" value="deletar">
+</form>
+</body>
+</html>

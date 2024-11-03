@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -74,6 +75,21 @@ public class AuthenticationController {
         repository.save(newUser);
 
         return new ModelAndView("home");
+    }
+
+    @PostMapping("/delete")
+    public ModelAndView delete(@ModelAttribute AuthenticationDTO data) {
+        ModelAndView modelAndView = new ModelAndView("/successDelete"); // Redireciona para uma página após a deleção
+
+        User userToDelete = repository.findUserByUsername(data.username()); // Encontra o usuário pelo nome de usuário
+        if (userToDelete != null) {
+            repository.delete(userToDelete); // Deleta o usuário
+            modelAndView.addObject("successMessage", "Usuário deletado com sucesso."); // Mensagem de sucesso
+        } else {
+            modelAndView.addObject("errorMessage", "Usuário não encontrado."); // Mensagem de erro se o usuário não existir
+        }
+
+        return modelAndView; // Retorna o ModelAndView
     }
 
 }
