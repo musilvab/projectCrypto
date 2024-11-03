@@ -65,7 +65,7 @@ public class CriptoController {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String crypted = JWT.create()
-                    .withIssuer("encript-api")
+                    .withIssuer("encrypt-api")
                     .withSubject(data.username())
                     .withClaim("data", data.data())
                     .sign(algorithm);
