@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="base :: head"></head>
+<body th:fragment="section">
+<h2>Bem-vindo à Área Autenticada</h2>
+<p>Seu login foi bem-sucedido!</p>
+<p>Token: <span th:text="${token}"></span></p>
+<a href="/auth/logout">Sair</a>
+</body>
+</html>

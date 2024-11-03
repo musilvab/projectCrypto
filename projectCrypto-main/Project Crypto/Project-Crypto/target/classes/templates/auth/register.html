@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="base :: head"></head>
+<body th:fragment="section">
+<h1>Registrar Novo Usuário</h1>
+
+<!-- Formulário de Registro -->
+<form action="/auth/register" method="post">
+    <!-- Campo de Nome de Usuário -->
+    <label for="username">Nome de Usuário:</label>
+    <input type="text" id="username" name="username" required>
+
+    <!-- Campo de Senha -->
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required>
+
+    <!-- Campo de Função -->
+    <label for="role">Função:</label>
+    <input type="text" id="role" name="role" required>
+
+    <!-- Botão de Envio -->
+    <button type="submit">Registrar</button>
+</form>
+</body>
+</html>

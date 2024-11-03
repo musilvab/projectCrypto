@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="base :: head"></head>
+<body th:fragment="section">
+<h2>Erro de Autenticação</h2>
+<p th:text="${errorMessage}">Erro de autenticação. Por favor, tente novamente.</p>
+<a href="/login">Tentar novamente</a>
+</body>
+</html>

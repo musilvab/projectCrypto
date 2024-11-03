@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head th:replace="base::head"></head>
+<body th:fragment="section">
+<h2>Erro de Registro</h2>
+<p th:text="${errorMessage}">Credenciais inválidas. Por favor, tente novamente.</p>
+<a href="/register">Tentar novamente</a>
+</body>
+</html>
