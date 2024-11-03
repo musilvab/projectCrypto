@@ -1,1 +1,0 @@
-INSERT INTO users (username, password, role) values ('admin', 'admin', '0');
