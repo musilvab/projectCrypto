@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,35 +29,23 @@ public class AuthenticationController {
     public ModelAndView login(@ModelAttribute AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.username(), data.password());
         Authentication auth;
+
         try {
             auth = authenticationManager.authenticate(usernamePassword);
         } catch (BadCredentialsException e) {
             ModelAndView modelAndView = new ModelAndView("error/loginError");
             modelAndView.addObject("errorMessage", "Credenciais inválidas");
             return modelAndView;
-        } catch (DisabledException e) {
-            ModelAndView modelAndView = new ModelAndView("error/accountDisabled");
-            modelAndView.addObject("errorMessage", "Sua conta está desativada. Por favor, entre em contato com o suporte.");
-            return modelAndView;
-        } catch (AccountExpiredException e) {
-            ModelAndView modelAndView = new ModelAndView("error/accountExpired");
-            modelAndView.addObject("errorMessage", "Sua conta expirou. Por favor, entre em contato com o suporte.");
-            return modelAndView;
         } catch (AuthenticationException e) {
+            System.out.println("erro de autenticação");
             ModelAndView modelAndView = new ModelAndView("error/authError");
             modelAndView.addObject("errorMessage", "Erro de autenticação. Tente novamente.");
             return modelAndView;
         }
 
-        var token = tokenService.generateToken((User) auth.getPrincipal());
-        ModelAndView modelAndView;
-        if (!token.isEmpty()) {
-            modelAndView = new ModelAndView("home");
-            modelAndView.addObject("token", token);
-        } else {
-            modelAndView = new ModelAndView("error/tokenError");
-            modelAndView.addObject("errorMessage", "Erro ao gerar token. Tente novamente.");
-        }
+        ModelAndView modelAndView = new ModelAndView("home");
+        modelAndView.addObject("message", "Seu login foi bem-sucedido!");
+        modelAndView.addObject("user", auth.getPrincipal());
         return modelAndView;
     }
 
@@ -79,14 +67,14 @@ public class AuthenticationController {
 
     @PostMapping("/delete")
     public ModelAndView delete(@ModelAttribute AuthenticationDTO data) {
-        ModelAndView modelAndView = new ModelAndView("/successDelete"); // Redireciona para uma página após a deleção
+        ModelAndView modelAndView = new ModelAndView("/success/successDelete");
 
-        User userToDelete = repository.findUserByUsername(data.username()); // Encontra o usuário pelo nome de usuário
+        User userToDelete = repository.findUserByUsername(data.username());
         if (userToDelete != null) {
             repository.delete(userToDelete); // Deleta o usuário
-            modelAndView.addObject("successMessage", "Usuário deletado com sucesso."); // Mensagem de sucesso
+            modelAndView.addObject("successMessage", "Usuário deletado com sucesso.");
         } else {
-            modelAndView.addObject("errorMessage", "Usuário não encontrado."); // Mensagem de erro se o usuário não existir
+            modelAndView.addObject("errorMessage", "Usuário não encontrado.");
         }
 
         return modelAndView; // Retorna o ModelAndView

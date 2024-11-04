@@ -19,14 +19,20 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf-> csrf.disable())
-                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .authorizeHttpRequests(authorize->authorize
-////                        .requestMatchers("/login").permitAll()
-////                        .requestMatchers("/auth/login").permitAll()
-////                        .requestMatchers("/auth/register").permitAll()
-////                        .requestMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
-//                        .anyRequest().permitAll()
-//                )
+                .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+                .authorizeHttpRequests(authorize->authorize
+                        .requestMatchers("/").authenticated()
+                        .anyRequest().permitAll()
+                )
+                .formLogin(form->form
+                        .loginPage("/login")
+                        .permitAll())
+                .logout(logout->logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID"))
                 .build();
     }
 

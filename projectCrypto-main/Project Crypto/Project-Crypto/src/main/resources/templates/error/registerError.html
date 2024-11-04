@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head th:replace="base::head"></head>
-<body th:fragment="section">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head th:replace="~{base::head}"></head>
+<body layout:fragment="content">
 <h2>Erro de Registro</h2>
 <p th:text="${errorMessage}">Credenciais inválidas. Por favor, tente novamente.</p>
 <a href="/register">Tentar novamente</a>

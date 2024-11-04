@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head th:replace="base :: head"></head>
-<body th:fragment="section">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head th:replace="~{base::head}"></head>
+<body layout:fragment="content">
 <h2>Login</h2>
+<p th:if="${logoutMessage}" th:text="${logoutMessage}"></p>
 <form action="/auth/login" method="post">
     <input type="text" name="username" id="username">
     <input type="text" name="password" id="password">

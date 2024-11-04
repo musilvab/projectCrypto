@@ -1,38 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="base::head"></head>
-<body th:fragment="section">
-<h1>Dados Criptografados do Usuário</h1>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head th:replace="~{base::head}"></head>
+<body layout:fragment="content">
+<h1>Dados Criptografados do Usuário: <span th:text="${username}"></span></h1>
 
-<!-- Formulário para buscar pelo username -->
-<form action="/cripto" method="get">
-    <label for="username">Nome de Usuário:</label>
-    <input type="text" id="username" name="username" required>
-    <button type="submit">Buscar</button>
-</form>
-
-<!-- Verifica se há dados para exibir -->
-<div th:if="${userData != null}">
-    <h2>Resultados para "<span th:text="${username}"></span>"</h2>
-    <ul>
-        <!-- Exibe cada item da lista userData -->
-        <li th:each="item : ${userData}">
-            Dado Criptografado: <span th:text="${item.data}"></span>
-        </li>
-    </ul>
-
-    <!-- Exibindo os dados originais descriptografados -->
-    <div th:if="${originalDataList != null}">
+    <div th:if="${!userData.isEmpty()}">
+        <h3>Dados Criptografados</h3>
+        <ul>
+            <li th:each="item : ${userData}" th:text="${item.data}"></li>
+        </ul>
         <h3>Dados Originais:</h3>
         <ul>
             <li th:each="data : ${originalDataList}" th:text="${data}"></li>
         </ul>
     </div>
-</div>
 
 <!-- Mensagem caso não haja resultados -->
-<div th:if="${userData == null}">
-    <p>Insira um nome de usuário para buscar dados.</p>
+<div th:if="${userData.isEmpty()}">
+    <p>Nenhum dado encontrado!</p>
 </div>
 
 <!-- Exibe mensagem de erro se houver -->

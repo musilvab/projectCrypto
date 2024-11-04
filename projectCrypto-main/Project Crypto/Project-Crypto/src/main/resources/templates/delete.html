@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head th:replace="base :: head"></head>
-<body th:fragment="section">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<head th:replace="~{base::head}"></head>
+<body layout:fragment="content">
 <h2>Excluir</h2>
 <form action="/auth/delete" method="post">
     <input type="text" name="username" id="username">
