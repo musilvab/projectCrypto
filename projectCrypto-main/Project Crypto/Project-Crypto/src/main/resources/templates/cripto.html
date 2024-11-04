@@ -7,7 +7,7 @@
 <!-- Formulário para buscar pelo username -->
 <form action="/cripto" method="get">
     <label for="username">Nome de Usuário:</label>
-    <input type="text" id="username" name="username" value="${username}" required>
+    <input type="text" id="username" name="username" required>
     <button type="submit">Buscar</button>
 </form>
 
@@ -17,8 +17,6 @@
     <ul>
         <!-- Exibe cada item da lista userData -->
         <li th:each="item : ${userData}">
-            ID: <span th:text="${item.id}"></span>,
-            Username: <span th:text="${item.username}"></span>,
             Dado Criptografado: <span th:text="${item.data}"></span>
         </li>
     </ul>

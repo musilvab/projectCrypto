@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="base :: head"></head>
 <body th:fragment="section">
-<h2>Bem-vindo à Área Autenticada</h2>
-<p>Seu login foi bem-sucedido!</p>
-<form action="/cripto" method="post">
-    <label for="data">Insira um texto para ser criptografado:</label>
-    <input type="text" name="data" id="data">
-    <label for="data">Confirme seu nome de usuário:</label>
-    <input type="text" name="username" id="username">
-    <input type="submit" value="Criptografar">
-</form>
-<a href="/login">Sair</a>
-<a href="/delete">Excluir conta</a>
+         <h2>Bem-vindo à Área Autenticada</h2>
+         <p>Seu login foi bem-sucedido!</p>
+         <form action="/cripto" method="post">
+             <label for="data">Insira um texto para ser criptografado:</label>
+             <input type="text" name="data" id="data">
+             <label for="data">Confirme seu nome de usuário:</label>
+             <input type="text" name="username" id="username">
+             <input type="submit" value="Criptografar">
+         </form>
+         <a href="/cripto">Buscar Dados</a>
+         <a href="/login">Sair</a>
+         <a href="/delete">Excluir conta</a>
 </body>
 </html>
+

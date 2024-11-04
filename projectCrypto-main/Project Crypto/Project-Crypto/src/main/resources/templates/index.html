@@ -1,12 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Home Page</title>
 </head>
-<body>
-<h1>Home</h1>
-<a href="/login">Logout</a>
-<a href="/delete">Deletar conta</a>
-</body>
+<body th:replace="base :: content='home'"></body>
 </html>
