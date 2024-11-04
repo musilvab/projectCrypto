@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("auth")
@@ -26,27 +27,23 @@ public class AuthenticationController {
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ModelAndView login(@ModelAttribute AuthenticationDTO data) {
+    public String login(@ModelAttribute AuthenticationDTO data, RedirectAttributes redirectAttributes) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.username(), data.password());
         Authentication auth;
 
         try {
             auth = authenticationManager.authenticate(usernamePassword);
         } catch (BadCredentialsException e) {
-            ModelAndView modelAndView = new ModelAndView("error/loginError");
-            modelAndView.addObject("errorMessage", "Credenciais inválidas");
-            return modelAndView;
+            redirectAttributes.addFlashAttribute("errorMessage", "Credenciais inválidas");
+            return "redirect:/error/loginError";
         } catch (AuthenticationException e) {
-            System.out.println("erro de autenticação");
-            ModelAndView modelAndView = new ModelAndView("error/authError");
-            modelAndView.addObject("errorMessage", "Erro de autenticação. Tente novamente.");
-            return modelAndView;
+            redirectAttributes.addFlashAttribute("errorMessage", "Erro de autenticação. Tente novamente.");
+            return "redirect:/error/authError";
         }
 
-        ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("message", "Seu login foi bem-sucedido!");
-        modelAndView.addObject("user", auth.getPrincipal());
-        return modelAndView;
+        redirectAttributes.addFlashAttribute("message", "Seu login foi bem-sucedido!");
+        redirectAttributes.addFlashAttribute("user", auth.getPrincipal());
+        return "redirect:/home";
     }
 
     @PostMapping("/register")

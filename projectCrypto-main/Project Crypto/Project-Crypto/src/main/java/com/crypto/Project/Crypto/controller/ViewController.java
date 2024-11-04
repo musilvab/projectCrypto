@@ -9,29 +9,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ViewController {
     @GetMapping("/login")
-    public String loginPage(@RequestParam(value = "logout", required = false) String logout, Model model) {
+    public String loginPage(@RequestParam(defaultValue = "", required = false) String logout, Model model) {
         model.addAttribute("title", "Login");
-        if (logout != null) {
-            model.addAttribute("logoutMessage", "Você foi desconectado com sucesso!");
+        if (!logout.equals("")) {
+            model.addAttribute("logoutMessage", "Você se desconectou com sucesso!");
         }
         return "auth/login";
     }
 
     @GetMapping("/register")
-    public String registerPage() {
+    public String registerPage(Model model) {
+        model.addAttribute("title", "Register");
         return "auth/register";
     }
 
-    @GetMapping("/")
-    public String homePage(HttpSession session, Model model) {
-        System.out.println("ID da Sessão: " + session.getId());
-        System.out.println("Usuário: " + session.getAttribute("SPRING_SECURITY_CONTEXT"));
-        model.addAttribute("title", "Página Inicial");
+    @GetMapping("/home")
+    public String index(Model model) {
+        model.addAttribute("title", "Home");
         return "home";
     }
 
     @GetMapping("/delete")
-    public String deletePage(){
+    public String deletePage(Model model){
+        model.addAttribute("title", "Delete");
         return "delete";
     }
 }
