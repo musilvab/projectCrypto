@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <th:block th:fragment="head">
-  <link rel="stylesheet" href="@{/css/styles.css}">
+  <link rel="stylesheet" href="/css/style.css">
   </th:block>
   <style>
     body, h1, h2, h3, h4, h5, h6 {font-family: "Montserrat", sans-serif;}
@@ -22,15 +23,16 @@
 
 <!-- Sidebar -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-  <img src="/w3images/avatar_smoke.jpg" style="width:100%">
-  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-black">
+  <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-black">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
   </a>
-  <a href="/" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-user w3-xxlarge"></i>
-    <p>PROFILE</p>
-  </a>
+  <div layout:fragment="profileButton(username)">
+    <a th:href="@{/profile/{username}(username=${username})}" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+      <i class="fa fa-user w3-xxlarge"></i>
+      <p>PROFILE</p>
+    </a>
+  </div>
 </nav>
 
 <main class="w3-padding-large" id="main">
@@ -40,14 +42,14 @@
 </main>
 
 <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <i class="fab fa-facebook-f social-icon"></i>
+  <i class="fab fa-instagram social-icon"></i>
+  <i class="fab fa-snapchat social-icon"></i>
+  <i class="fab fa-pinterest-p social-icon"></i>
+  <i class="fab fa-twitter social-icon"></i>
+  <i class="fab fa-linkedin-in social-icon"></i>
   <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
-
+<script src="/js/script.js"></script>
 </body>
 </html>

@@ -2,25 +2,26 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
 <head th:replace="~{base::head}"></head>
 <body>
+<div layout:fragment="profileButton(${username})"></div>
 <div layout:fragment="content">
     <h1>Bem-vindo à Área Autenticada</h1>
-    <p th:text="${message}"></p>
     <form action="/cripto" method="post">
         <label for="data">Insira um texto para ser criptografado:</label>
         <input type="text" name="data" id="data">
-        <input type="hidden" name="username" id="username" th:value="${user.username}">
+        <input type="hidden" name="username" id="username" value="admin">
         <input type="submit" value="Criptografar">
     </form>
 
     <a href="#" onclick="document.getElementById('usernameForm').submit(); return false;">Buscar Dados</a>
     <form id="usernameForm" action="/cripto" method="get" style="display:none;">
-        <input type="hidden" name="username" th:value="${user.username}">
+        <input type="hidden" name="username" value="admin">
     </form>
 
-    <a th:href="@{/login(logout=logout)}">Logout</a>
+    <a href="auth/logout">Logout</a>
 
     <a href="/delete">Excluir conta</a>
 </div>
+<script src="/js/home.js"></script>
 </body>
 </html>
 

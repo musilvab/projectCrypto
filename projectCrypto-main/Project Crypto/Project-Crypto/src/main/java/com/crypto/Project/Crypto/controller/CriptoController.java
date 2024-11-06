@@ -35,6 +35,7 @@ public class CriptoController {
         if (username != null && !username.isEmpty()) {
             // Busca os dados do usuário e os adiciona ao modelo se o username estiver presente
             List<EncriptedData> userData = encriptedDataRepository.findByUsername(username);
+            System.out.println(userData);
             modelAndView.addObject("userData", userData);
             modelAndView.addObject("username", username);
 

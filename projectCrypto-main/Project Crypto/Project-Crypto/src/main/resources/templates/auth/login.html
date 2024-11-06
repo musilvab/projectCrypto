@@ -4,10 +4,11 @@
 <body layout:fragment="content">
 <h2>Login</h2>
 <p th:if="${logoutMessage}" th:text="${logoutMessage}"></p>
-<form action="/auth/login" method="post">
+<form id="loginForm" action="/auth/login" method="post">
     <input type="text" name="username" id="username">
     <input type="text" name="password" id="password">
     <input type="submit" value="submit">
 </form>
+<script src="/js/login.js"></script>
 </body>
 </html>
