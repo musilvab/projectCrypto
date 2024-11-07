@@ -6,3 +6,24 @@
 .social-icon:hover {
     opacity: 1;
 }
+
+.hidden {
+    display: none;
+}
+
+.table-cell {
+    display: table-cell;
+}
+
+.limit-text {
+    max-width: 500px;
+    max-height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.show-full {
+    max-width: none;
+    max-height: none;
+    overflow: visible;
+}

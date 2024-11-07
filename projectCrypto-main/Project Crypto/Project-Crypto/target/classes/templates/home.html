@@ -12,10 +12,7 @@
         <input type="submit" value="Criptografar">
     </form>
 
-    <a href="#" onclick="document.getElementById('usernameForm').submit(); return false;">Buscar Dados</a>
-    <form id="usernameForm" action="/cripto" method="get" style="display:none;">
-        <input type="hidden" name="username" value="admin">
-    </form>
+    <a th:href="@{/profile/{username}(username=${username})}">Buscar Dados</a>
 
     <a href="auth/logout">Logout</a>
 

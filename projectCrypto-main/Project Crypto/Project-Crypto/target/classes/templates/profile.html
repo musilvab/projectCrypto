@@ -6,11 +6,13 @@
     <p style="display: none" id="username" th:text="${username}"></p>
     <h1>Dados do usuário</h1>
     <table id="userDataTable">
-        <thead><tr>
-            <th>ID</th>
-            <th>Dado Criptografado</th>
-            <th></th>
-        </tr></thead>
+        <thead>
+        <tr>
+            <th id="criptedTitle">Dado Criptografado</th>
+            <th id="uncriptedTitle" >Dado Descriptografado</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
 
         <tbody></tbody>
     </table>
